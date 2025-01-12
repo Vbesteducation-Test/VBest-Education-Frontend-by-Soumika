@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Selection - VBest Education</title>
+    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header from index.html -->
+    <header>
+        <div class="header-container">
+            <div class="left-section">
+                <div class="logo">
+                    <img src="logo2.png" alt="VBest Logo">
+                </div>
+                <div class="social-icons">
+                    <a href="https://instagram.com/vbest" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+                    <a href="https://facebook.com/vbest" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+                </div>
+            </div>
+            <div class="right-section">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">EAMCET</a></li>
+                        <li><a href="#">ECET</a></li>
+                        <li><a href="#">More</a></li>
+                    </ul>
+                </nav>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button>🔍</button>
+                </div>
+                <div class="user-section">
+                    <div class="user-logged-in">
+                        <img src="user-pic.png" alt="User Picture" class="user-pic">
+                        <div class="dropdown">
+                            <span class="dropdown-arrow">⬇</span>
+                            <div class="dropdown-content">
+                                <a href="#">Profile</a>
+                                <a href="#">My Subscriptions</a>
+                                <a href="#">My Account</a>
+                                <a href="#">Log Out</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-not-logged-in">
+                        <button class="login-btn" onclick="redirectToLogin()">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="selection-container">
+            <!-- Display Selected Exam and Subject -->
+            <h2>Selected Exam: <span id="exam-name"></span></h2>
+            <h3>Subject: <span id="subject-name"></span></h3>
+    
+            <!-- Grade Selection Form -->
+            <label for="grade-selector">Grade:</label>
+            <select id="grade-selector" class="grade-selector">
+                <option value="11">Grade 11</option>
+                <option value="12">Grade 12</option>
+            </select>
+
+            <label for="chapter-selector">Chapter:</label>
+            <select id="chapter-selector" class="chapter-selector">
+                <!-- Chapter options will be populated here -->
+            </select>
+    
+            <!-- Submit and Clear Buttons -->
+            <div class="buttons">
+                <button class="submit" onclick="submitSelection()">Submit</button>
+                <button class="clear" onclick="clearSelection()">Clear</button>
+            </div>
+    
+            <!-- Summary of Selections -->
+            <div class="summary" id="summary-container" style="display:none;">
+                <p><strong>Grade:</strong> <span id="grade-summary"></span></p>
+                <p><strong>Chapters:</strong> <span id="chapter-summary"></span></p>
+            </div>
+    
+            <!-- Image Carousel -->
+            <div class="image-container" id="image-container" style="display:none;">
+                <button class="prev" onclick="prevImage()">&#10094;</button>
+                <img class="image-slide" src="image1.jpg" alt="Chapter Image 1" id="carousel-img">
+                <button class="next" onclick="nextImage()">&#10095;</button>
+            </div>
+    
+            <!-- Like Heart Button -->
+            <button class="heart-button" onclick="toggleHeart(this)" style="display:none;">
+                <span class="heart">&#9825;</span>
+            </button>
+    
+            <!-- Share Option -->
+            <button class="share-button" style="display:none;">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+        </div>
+    </main>
+    
+
+    <footer>
+        <!-- Footer from index.html -->
+        <div class="footer-container">
+            <div class="about-us">
+                <h2>About Us</h2>
+                <p>VBest is committed to providing the best resources and support for students to excel in their educational journey. We strive to make learning accessible, engaging, and effective.</p>
+            </div>
+        
+            <div class="get-in-touch">
+                <h2>Get in Touch</h2>
+                <ul class="socials">
+                    <li>Email: <a href="mailto:contact@vbest.com">contact@vbest.com</a></li>
+                    <li>
+                        <a href="https://instagram.com/vbest_official" target="_blank" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/vbestofficial" target="_blank" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function getQueryParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {
+                exam: urlParams.get('exam'),
+                subject: urlParams.get('subject')
+            };
+        }
+        function submitSelection() {
+            const gradeSelector = document.getElementById("grade-selector");
+            const selectedGrade = gradeSelector.value;
+            const chapterSelector = document.getElementById("chapter-selector");
+            const selectedChapter = chapterSelector.value;
+
+
+            <!-- if (!selectedGrade || "Select Class") {
+                alert("Please select a class.");
+                return;
+            } else if(!selectedChapter || "Select Chapter"){
+                alert("Please select a Chapter.");
+                return;
+            } -->
+            document.getElementById("grade-selector").textContent = selectedGrade;       
+            document.getElementById("chapter-selector").textContent = selectedChapter;               
+            document.getElementById("summary").style.display = "block";
+            document.getElementById("image-container").style.display = "flex";
+            document.querySelector(".heart-button").style.display = "inline-block";
+            document.querySelector(".share-button").style.display = "inline-block";
+
+            const imageSrc = `${selectedLanguage.toLowerCase()}1.jpg`; // Example: java1.jpg
+            document.getElementById("carousel-img").src = imageSrc;
+        }
+            // Clear button handler
+             function clearSelection() {
+                gradeSelector.value = ""; // Reset the grade selector
+                chapterSelector.value = "";
+                summaryContainer.style.display = "none"; // Hide summary
+                imageContainer.style.display = "none"; // Hide image carousel
+                heartButton.style.display = "none"; // Hide heart button
+                shareButton.style.display = "none"; // Hide share button
+            }
+        
+            // Like/Heart button toggle
+           // Function to navigate images in the carousel
+        function prevImage() {
+            // Placeholder functionality for navigating to the previous image
+            alert("Navigate to previous image.");
+        }
+
+        function nextImage() {
+            // Placeholder functionality for navigating to the next image
+            alert("Navigate to next image.");
+        }
+
+        // Function to toggle heart button
+        function toggleHeart(button) {
+            button.querySelector(".heart").textContent = button.querySelector(".heart").textContent === "♡" ? "❤️" : "♡";
+        }
+        
+    </script>
+
+
+</body>
+</html>

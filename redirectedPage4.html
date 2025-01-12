@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Language Selection</title>
+    <link rel="stylesheet" href="styles2.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="left-section">
+                <div class="logo">
+                    <img src="logo2.png" alt="VBest Logo">
+                </div>
+                <div class="social-icons">
+                    <a href="https://instagram.com/vbest" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+                    <a href="https://facebook.com/vbest" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+                </div>
+            </div>
+            <div class="right-section">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">EAMCET</a></li>
+                        <li><a href="#">ECET</a></li>
+                        <li><a href="#">More</a></li>
+                    </ul>
+                </nav>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button>🔍</button>
+                </div>
+                <div class="user-section">
+                    <div class="user-logged-in">
+                        <img src="user-pic.png" alt="User Picture" class="user-pic">
+                        <div class="dropdown">
+                            <span class="dropdown-arrow">⬇</span>
+                            <div class="dropdown-content">
+                                <a href="#">Profile</a>
+                                <a href="#">My Subscriptions</a>
+                                <a href="#">My Account</a>
+                                <a href="#">Log Out</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-not-logged-in">
+                        <button class="login-btn" onclick="redirectToLogin()">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="selection-container">
+            <!-- Selection Form -->
+            <label for="language-selector">Programming Language:</label>
+            <select id="language-selector" class="language-selector">
+                <option value="">-- Select Language --</option>
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="C++">C++</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Ruby">Ruby</option>
+            </select>
+
+            <!-- Submit and Clear Buttons -->
+            <div class="buttons">
+                <button class="submit" onclick="displayLanguageSummary()">Submit</button>
+                <button class="clear" onclick="clearSelection()">Clear</button>
+            </div>
+
+            <!-- Summary of Selections -->
+            <div class="summary" id="summary" style="display:none;">
+                <p><strong>Programming Language:</strong> <span id="language-summary"></span></p>
+            </div>
+
+            <!-- Image Carousel -->
+            <div class="image-container" id="image-container" style="display:none;">
+                <button class="prev" onclick="prevImage()">&#10094;</button>
+                <img class="image-slide" src="image1.jpg" alt="Programming Image" id="carousel-img">
+                <button class="next" onclick="nextImage()">&#10095;</button>
+            </div>
+
+            <!-- Like Heart Button -->
+            <button class="heart-button" onclick="toggleHeart(this)" style="display:none;">
+                <span class="heart">&#9825;</span>
+            </button>
+            <!-- Share Option -->
+            <button class="share-button" style="display:none;">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="about-us">
+                <h2>About Us</h2>
+                <p>VBest is committed to providing the best resources and support for students to excel in their educational journey. We strive to make learning accessible, engaging, and effective.</p>
+            </div>
+        
+            <div class="get-in-touch">
+                <h2>Get in Touch</h2>
+                <ul class="socials">
+                    <li>Email: <a href="mailto:contact@vbest.com">contact@vbest.com</a></li>
+                    <li>
+                        <a href="https://instagram.com/vbest_official" target="_blank" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/vbestofficial" target="_blank" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function displayLanguageSummary() {
+            const languageSelector = document.getElementById("language-selector");
+            const selectedLanguage = languageSelector.value;
+
+            if (!selectedLanguage) {
+                alert("Please select a programming language.");
+                return;
+            }
+
+            document.getElementById("language-summary").textContent = selectedLanguage;
+            document.getElementById("summary").style.display = "block";
+            document.getElementById("image-container").style.display = "flex";
+            document.querySelector(".heart-button").style.display = "inline-block";
+            document.querySelector(".share-button").style.display = "inline-block";
+
+            // Update image source for the selected language (placeholder logic)
+            const imageSrc = `${selectedLanguage.toLowerCase()}1.jpg`; // Example: java1.jpg
+            document.getElementById("carousel-img").src = imageSrc;
+        }
+
+        // Function to clear selection
+        function clearSelection() {
+            document.getElementById("language-selector").value = "";
+            document.getElementById("summary").style.display = "none";
+            document.getElementById("image-container").style.display = "none";
+            document.querySelector(".heart-button").style.display = "none";
+            document.querySelector(".share-button").style.display = "none";
+        }
+
+        // Function to navigate images in the carousel
+        function prevImage() {
+            // Placeholder functionality for navigating to the previous image
+            alert("Navigate to previous image.");
+        }
+
+        function nextImage() {
+            // Placeholder functionality for navigating to the next image
+            alert("Navigate to next image.");
+        }
+
+        // Function to toggle heart button
+        function toggleHeart(button) {
+            button.querySelector(".heart").textContent = button.querySelector(".heart").textContent === "♡" ? "❤️" : "♡";
+        }
+    </script>
+</body>
+</html>
